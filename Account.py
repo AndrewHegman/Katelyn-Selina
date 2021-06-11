@@ -20,6 +20,7 @@ class Account:
         get_balance() -> int
             Returns the current balance.
     """
+
     def __init__(self, balance=0):
         """
         Parameters
@@ -27,7 +28,7 @@ class Account:
             balance: int, optional
                 The starting balance of the account. (Default 0).
         """
-        pass
+        self.__balance = balance
 
     def withdraw(self, amount_to_withdraw, quiet=True):
         """
@@ -42,22 +43,41 @@ class Account:
                 If set to False, an error message is printed if there are insufficient funds to withdraw. (Default is
                 True)
         """
-        pass
+        if self.__balance < amount_to_withdraw:
+            if not quiet:
+                print(f"You don't have enough money! Your current balance is {self.__balance}")
+        else:
+            self.__balance -= amount_to_withdraw
+            return amount_to_withdraw
 
-    def deposit(self, amount_to_deposit):
+    def deposit(self, deposit_amount):
         """
         Adds money to the account. Returns nothing.
 
         Parameters
         ----------
-            amount_to_deposit: int
+            deposit_amount: int
                 The amount to add to the account
         """
-        pass
+        self.__balance += deposit_amount
 
     def get_balance(self):
         """
         Returns the current balance of the account.
         """
+        return self.__balance
+
+
+if __name__ == '__main__':
+    my_account = Account()
+    my_account.deposit(100)
+    print(my_account.get_balance())
+
+    print(f'Return value from successful withdrawal  : {my_account.withdraw(10)}')
+    print(f'Return value from unsuccessful withdrawal: {my_account.withdraw(10000)}')
+
+    if my_account.withdraw(1000) is None:
+        # Do some error handling here
         pass
+
 
