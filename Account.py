@@ -50,16 +50,16 @@ class Account:
             self.__balance -= amount_to_withdraw
             return amount_to_withdraw
 
-    def deposit(self, deposit_amount):
+    def deposit(self, amount_to_deposit):
         """
         Adds money to the account. Returns nothing.
 
         Parameters
         ----------
-            deposit_amount: int
+            amount_to_deposit: int
                 The amount to add to the account
         """
-        self.__balance += deposit_amount
+        self.__balance += amount_to_deposit
 
     def get_balance(self):
         """
