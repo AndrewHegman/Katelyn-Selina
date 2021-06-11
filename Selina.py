@@ -1,27 +1,39 @@
-choice = 2
-user_str = 'JGNNQ YQTNF'
-output_str = ''
-shift_amount = 54
-
-if choice == 1:
-    for letter in user_str:
-        letter_num = ord(letter)
-        letter_num += shift_amount
-
-        while letter_num > 90:
-            letter_num -= 26
-        output_str += chr(letter_num)
-    print('encrypted: ' + output_str)
-elif choice == 2:
-    for letter in user_str:
-        letter_num = ord(letter)
-        letter_num -= shift_amount
-
-        while letter_num < 65:
-            letter_num += 26
-        output_str += chr(letter_num)
-    print('decrypted: ' + output_str)
-
-print('expected : JGNNQ YQTNF')
+LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 
+def encrypt(message, key):
+    encrypted = ''
+    for chars in message:
+        if chars.isalpha():
+            num = LETTERS.find(chars)
+            print(num)
+            num += key
+            encrypted += LETTERS[num]
+
+    return encrypted
+
+
+def decrypt(message, key):
+    decrypted = ''
+    for chars in message:
+        if chars in LETTERS:
+            num = LETTERS.find(chars)
+            num -= key
+            decrypted += LETTERS[num]
+
+    return decrypted
+
+
+def main():
+    message = str(input('Enter your message: '))
+    key = int(input('Enter you shift amount: '))
+    choice = input('Encrypt or Decrypt? enter e for encryption, d for decryption: ')
+
+    if choice.lower().startswith('e'):
+        print(encrypt(message, key))
+    else:
+        print(decrypt(message, key))
+
+
+if __name__ == '__main__':
+    main()
