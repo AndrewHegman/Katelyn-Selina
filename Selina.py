@@ -9,7 +9,6 @@ def encrypt(message, key):
             print(num)
             num += key
             encrypted += LETTERS[num]
-
     return encrypted
 
 
