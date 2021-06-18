@@ -27,7 +27,7 @@ class Account:
             balance: int, optional
                 The starting balance of the account. (Default 0).
         """
-        pass
+        self.__balance = balance
 
     def withdraw(self, amount_to_withdraw, quiet=True):
         """
@@ -42,7 +42,14 @@ class Account:
                 If set to False, an error message is printed if there are insufficient funds to withdraw. (Default is
                 True)
         """
-        pass
+        if self.__balance >= amount_to_withdraw:
+            self.__balance -= amount_to_withdraw
+            return amount_to_withdraw
+
+        else:
+            if not quiet:
+                print(f'You have insufficient funds to withdraw {amount_to_withdraw}. Current balance is {self.__balance}')
+            return None
 
     def deposit(self, amount_to_deposit):
         """
@@ -53,11 +60,10 @@ class Account:
             amount_to_deposit: int
                 The amount to add to the account
         """
-        pass
+        self.__balance += amount_to_deposit
 
     def get_balance(self):
         """
         Returns the current balance of the account.
         """
-        pass
-
+        return self.__balance
